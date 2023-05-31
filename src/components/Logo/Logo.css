@@ -1,0 +1,10 @@
+.logoMaria {
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    -webkit-user-drag: none;
+    height: 40px;
+    border: 10;
+    display: flex;
+}
+
