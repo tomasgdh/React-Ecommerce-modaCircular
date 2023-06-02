@@ -7,7 +7,7 @@ import "./CartWidget.css";
 
 const CartWidget = () => {
   return (
-    <div >
+    <div className='CartContainer'>
       <ShoppingCartOutlinedIcon sx={{ color: "white", fontSize:"2.5em" }} />
       <span className="cart-badge">{"5"} </span>
     </div>
