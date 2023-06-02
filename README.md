@@ -1,6 +1,6 @@
 # React-Ecommerce-modaCircular
 
-Este proyecto es una demo de ecommerce de juegos y accesorios de gamming, realizado con React + Vite para el curso de ReactJs de Coderhouse.
+Este proyecto es una demo de ecommerce de Moda Circular (o mal llamado Feria Americana), realizado con React + Vite para el curso de ReactJs de Coderhouse.
 
 Primer Entrega:
 - Crea una carpeta dentro de src llamada components que contenga la implementación del componente NavBar dentro del archivo NavBar.js. Su funcionalidad es la de renderizar una barra de menú (Navbar).
@@ -8,7 +8,8 @@ Primer Entrega:
 - Crea un componente ItemListContainer. Impórtalo dentro de App.js, y abajo de NavBar.js. 
 - Link al último commit de tu repositorio en Github. Debe tener el nombre “PreEntrega1+Apellido”
 
-Puede acceder al live demo en este [link](https://react-coder-b6rv-git-main-naitsy.vercel.app/)
+Puede acceder al live demo en este [link](https://react-ecommerce-moda-circular.vercel.app/)
+
 
 # Instalación 
 En la terminal, posicionarse en el directorio del proyecto y ejecutar los siguientes comandos:

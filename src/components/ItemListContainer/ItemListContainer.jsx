@@ -1,7 +1,7 @@
 //import React from "react";
 
 // eslint-disable-next-line react/prop-types
-const ItemListContainer = ({greeting} ) => {
+const ItemListContainer = ({greeting}) => {
   return (
     <div>
       <p>Saludo: {greeting}</p>

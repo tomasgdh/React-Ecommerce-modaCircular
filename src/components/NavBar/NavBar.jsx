@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import CardWidget from '../CardWidget/CardWidget';
+import CartWidget from '../CartWidget/CartWidget';
 import LogoMaria from '../Logo/Logo';
 
 const pages = [{title: "Home",url: "https://www.google.com"}, 
@@ -133,8 +133,8 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <CardWidget />
+          <Box >
+            <CartWidget />
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

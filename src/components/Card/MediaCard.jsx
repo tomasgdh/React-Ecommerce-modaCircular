@@ -9,10 +9,10 @@ import Typography from '@mui/material/Typography';
 // eslint-disable-next-line react/prop-types
 const MediaCard = ({img, title, name, description,description2}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, display:'inline',	justifyContent:'space-evenly', alignContent:'space-around',marginBottom:'10px' }}>
       <CardMedia
         component="img" 
-        sx={{ height: 300 }}
+        sx={{ height: 300}}
         image={img}
         title={title}
       />
