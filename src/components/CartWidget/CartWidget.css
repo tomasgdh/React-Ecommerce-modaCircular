@@ -1,3 +1,7 @@
+.CartContainer{
+display: flex;
+}
+
 .cart-badge {
     background-color: #ec0003;
     width: 10px;
