@@ -14,13 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import CartWidget from '../CartWidget/CartWidget';
 import LogoMaria from '../Logo/Logo';
 
-const pages = [{title: "Home",url: "https://www.google.com"}, 
-                {title: "Products",url: "https://www.google.com"},
-                {title: "Pricing",url: "https://www.google.com"},
-                {title: "Contact",url: "https://www.google.com"}];
+const pages = [{title: "Home",url: "/"}, 
+                {title: "About",url: "/about"},
+                {title: "Pricing",url: "/contact"},
+                {title: "Contact",url: "/contact"},
+                {title: "About",url: "/about"},];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const leyenda = 'Moda Circular';
+const titleBar = 'Moda Circular';
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -45,53 +46,19 @@ function ResponsiveAppBar() {
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
+          <Typography variant="h6" noWrap component="a" href="/" sx={{mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.3rem',
+                                                                      color: 'inherit',textDecoration: 'none', }}
           >
-            {leyenda}
+            {titleBar}
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+            <IconButton  size="large" aria-label="account of current user"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
+            <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left',}}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
+              sx={{ display: { xs: 'block', md: 'none' }, }}>
               {pages.map((page) => (
                 <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
@@ -118,7 +85,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            {leyenda}
+            {titleBar}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

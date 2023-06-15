@@ -1,58 +1,37 @@
-import './App.css'
-import ResponsiveAppBar from './components/NavBar/NavBar'
-import MediaCard from './components/Card/MediaCard'
+// React router dom
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Components
+import ResponsiveAppBar from './components/NavBar/NavBar2'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 
-function App() {
-let path ='/Static/Images/';
-  const datos = [{key: "1",
-                  img: path+"example.webp",
-                  title:"Example".toUpperCase(),
-                  name:"Sweater",
-                  description:'piece of clothing, typically with long sleeves, made of knitted or crocheted material, that covers the upper part of the body',
-                  description2: 'SUPER OFERTA'},
-                  {key: "2",
-                  img: path+"example.webp",
-                  title:"Example".toUpperCase(),
-                  name:"Sweater",
-                  description:'piece of clothing, typically with long sleeves, made of knitted or crocheted material, that covers the upper part of the body',
-                  description2: 'SUPER OFERTA'},
-                 {key: "3",
-                 img: path+"example.webp",
-                  title:"Example".toUpperCase(),
-                  name:"Sweater",
-                  description:'piece of clothing, typically with long sleeves, made of knitted or crocheted material, that covers the upper part of the body',
-                  description2: 'SUPER OFERTA'},
-                  {key: "4",
-                  img: path+"example.webp",
-                  title:"Example".toUpperCase(),
-                  name:"Sweater",
-                  description:'piece of clothing, typically with long sleeves, made of knitted or crocheted material, that covers the upper part of the body',
-                  description2: 'SUPER OFERTA'},
-                  {key: "5",
-                  img: path+"example.webp",
-                  title:"Example".toUpperCase(),
-                  name:"Sweater",
-                  description:'piece of clothing, typically with long sleeves, made of knitted or crocheted material, that covers the upper part of the body',
-                  description2: 'SUPER OFERTA'},]
+// Pages
+import HomePage from "./pages/HomePage/HomePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
+//import DetailPage from "/pages/DetailPage/DetailPage";
+//import CategoryPage from "/pages/CategoryPage/CategoryPage";
+
+//Styles
+import './App.css'
+
+const App = () => {
+
   return (
-    <>
+    <Router>
+      <div className="App">
       <ResponsiveAppBar/>
       <br/>
       <ItemListContainer greeting={"¡Bienvenidos a la Tienda!"}/>
-      <div className='Cards'> 
-      {datos.map( x =>{
-          return  <MediaCard
-                        key={x.key}
-                        img= {x.img}
-                        title= {x.title}
-                        name=  {x.name}
-                        description =  {x.description}
-                        description2 =  {x.description2}
-                        />
-                })};
-      </div> 
-    </>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/*<Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/category/:categoryId" element={<CategoryPage />} />
+  */}</Routes>
+        </div>
+    </Router>
   )
 }
 

@@ -1,8 +1,4 @@
-//import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
-//import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-//import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
-
 import "./CartWidget.css";
 
 const CartWidget = () => {
