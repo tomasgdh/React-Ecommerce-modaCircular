@@ -1,24 +1,36 @@
-import  { useState, useEffect } from "react";
-import MediaCard from "../Card/MediaCard";
+import { useState, useEffect } from "react";
+
+//Components
+import ClothingCard from "../Card/ShortClothingCard";
+
+//CSS
 import "./CardList.css";
 
 const CardList = () => {
-  const [users, setUsers] = useState([]);
+  const [clothing, setClothing] = useState([]);
 
-  console.log("USERS", users);
-
+  /*  useEffect(() => {
+    
+    //fetch("https://rickandmortyapi.com/api/character")
+      //.then((response) => response.json())
+      //.then((json) => console.log(json.results));
+    
+    axios(`${process.env.REACT_APP_BASE_URL}`).then((json) =>
+    setChars(json.data.results)
+  );
+}, []);*/
   useEffect(() => {
-    fetch("https://api.github.com/users")
+    fetch("./data/Clothing.json")
       .then((response) => response.json())
-      .then((data) => setUsers(data));
+      .then((data) => setClothing(data));
   }, []);
 
   return (
-    <div className="Cards-List">
-      {users.map((user) => {
+    <div className="CardList">
+      {clothing.map((cloth) => {
         return (
-          <div key={user.id}>
-            <MediaCard data={user} />
+          <div key={cloth.id} style={{ margin: 10 }}>
+              <ClothingCard data={cloth} />
           </div>
         );
       })}

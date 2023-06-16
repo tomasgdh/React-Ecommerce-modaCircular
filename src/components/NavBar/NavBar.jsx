@@ -1,31 +1,49 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import CartWidget from '../CartWidget/CartWidget';
-import LogoMaria from '../Logo/Logo';
+import { useEffect, useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
-const pages = [{title: "Home",url: "/"}, 
-                {title: "About",url: "/about"},
-                {title: "Pricing",url: "/contact"},
-                {title: "Contact",url: "/contact"},
-                {title: "About",url: "/about"},];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { Link } from "react-router-dom";
 
-const titleBar = 'Moda Circular';
+// Components
+import CartWidget from "../CartWidget/CartWidget";
+import LogoMaria from "../Logo/Logo";
+
+// Styles
+import "./NavBar.css";
+
+const pages = [
+  { title: "Home", url: "/" },
+  //{ title: "Products", url: "/products" },
+  { title: "Category", url: "/category" },
+  { title: "Contact", url: "/contact" },
+  { title: "About", url: "/about" },
+];
+const categories = [
+  { title: "Sweater", url: "/category/Sweater" },
+  { title: "Pants", url: "/category/Pant" },
+  { title: "T-shirts", url: "/category/T-shirt" },
+  { title: "Coats", url: "/category/Coat" },
+];
+
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const titleBar = "Moda Circular";
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [categoryAnchorEl, setCategoryAnchorEl] = useState(null);
+  const [categoryOpen, setCategoryOpen] = useState(Boolean(categoryAnchorEl));
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,39 +54,100 @@ function ResponsiveAppBar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    setCategoryAnchorEl(null);
+    setCategoryOpen(false);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleCategoryMenu = (event) => {
+    setCategoryAnchorEl(event.currentTarget);
+    setCategoryOpen(true);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      //if (window.innerWidth < 600) {
+      if (categoryOpen) {
+        setCategoryAnchorEl(null);
+        setCategoryOpen(false);
+      }
+      //}
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [categoryOpen]);
+
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography variant="h6" noWrap component="a" href="/" sx={{mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace',fontWeight: 700,letterSpacing: '.3rem',
-                                                                      color: 'inherit',textDecoration: 'none', }}
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
           >
-            {titleBar}
+            <Link className="li2" to="/">
+              {titleBar}
+            </Link>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton  size="large" aria-label="account of current user"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit">
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
               <MenuIcon />
             </IconButton>
-            <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'left',}}
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              keepMounted
+              transformOrigin={{ vertical: "top", horizontal: "left" }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' }, }}>
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
               {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                        <a href={page.url}>{page.title}</a>
-                    </Typography>
+                <MenuItem key={page.title}>
+                  <Typography textAlign="center">
+                    <Link
+                      className="li"
+                      onClick={
+                        page.title === "Category"
+                          ? handleCategoryMenu
+                          : handleCloseNavMenu
+                      }
+                      to={page.title === "Category" ? "#" : page.url}
+                    >
+                      {page.title}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <LogoMaria />
+          <Link to="/">
+            <LogoMaria />
+          </Link>
+
           <Typography
             variant="h5"
             noWrap
@@ -76,34 +155,41 @@ function ResponsiveAppBar() {
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             {titleBar}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={handleCloseNavMenu}
-                href= {page.url}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-                
+                onClick={
+                  page.title === "Category"
+                    ? handleCategoryMenu
+                    : handleCloseNavMenu
+                }
+                //href={page.title === "Category" ? "" : page.url}
+                sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.title}
+                <Link
+                  className="li2"
+                  to={page.title === "Category" ? "#" : page.url}
+                >
+                  {page.title}
+                </Link>
               </Button>
             ))}
           </Box>
-          <Box >
+          <Box>
             <CartWidget />
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -111,17 +197,17 @@ function ResponsiveAppBar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -133,6 +219,31 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          <Menu
+            id="category-menu"
+            anchorEl={categoryAnchorEl}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+            open={categoryOpen}
+            onClose={handleCloseNavMenu}
+          >
+            {categories.map((cat) => (
+              <MenuItem key={cat.title} onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link className="li" to={cat.url}>
+                    {cat.title}
+                  </Link>
+                </Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Toolbar>
       </Container>
     </AppBar>
