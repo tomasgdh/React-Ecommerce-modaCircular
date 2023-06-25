@@ -26,18 +26,19 @@ Segunda Entrega:
   - Utilizar el id de la categoría como nombre en la URL param en vez de números (vehículos, por ej)
   - Utilizar el id del item como URL param
 
-  Entrega Final:
+Entrega Final:
 
-  - Consigna:
+- Consigna:
 
-    - Desarrollarás una app de un e-commerce para poder vender productos de un rubro a elección
+  - Desarrollarás una app de un e-commerce para poder vender productos de un rubro a elección
 
-  - Componentes:
-    - Navbar
-    - Catálogo
-    - Detalle de producto
-    - CartContext
-    - CartWidget
+- Componentes:
+
+  - Navbar
+  - Catálogo
+  - Detalle de producto
+  - CartContext
+  - CartWidget
 
 - Se debe entregar
 
