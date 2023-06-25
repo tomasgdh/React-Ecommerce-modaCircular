@@ -21,9 +21,37 @@ Segunda Entrega:
   - Clickear un Item.js debe navegar a /item/:id
   - Clickear en una categoría del navbar debe navegar a /category/:categoryId
 - Notas:
+
   - No usar HashRouter como en el ejemplo del gif (usar BrowserRouter)
   - Utilizar el id de la categoría como nombre en la URL param en vez de números (vehículos, por ej)
   - Utilizar el id del item como URL param
+
+  Entrega Final:
+
+  - Consigna:
+
+    - Desarrollarás una app de un e-commerce para poder vender productos de un rubro a elección
+
+  - Componentes:
+    - Navbar
+    - Catálogo
+    - Detalle de producto
+    - CartContext
+    - CartWidget
+
+- Se debe entregar
+
+  - NavBar
+  - CartWidget
+  - ItemListContainer
+  - ItemList
+  - ItemDetailContainer
+  - ItemDetail
+    - ItemQuantitySelector
+    - Description
+    - AddItemButton
+  - Checkout
+    - Brief (detalle de compra)
 
 Puede acceder al live demo en este [link](https://react-ecommerce-moda-circular.vercel.app/)
 
