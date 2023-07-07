@@ -1,11 +1,11 @@
 // Components
-import CardList from "../../components/CardList/CardList";
+import CardListContainer from "../../components/CardListContainer/CardListContainer";
 
 const HomePage = () => {
   return (
     <div>
       <h1>List of clothing products!</h1>
-      <CardList />
+      <CardListContainer />
     </div>
   );
 };
