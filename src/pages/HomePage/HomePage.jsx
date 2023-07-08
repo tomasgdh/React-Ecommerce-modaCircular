@@ -3,8 +3,7 @@ import CardListContainer from "../../components/CardListContainer/CardListContai
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>List of clothing products!</h1>
+    <div >
       <CardListContainer />
     </div>
   );

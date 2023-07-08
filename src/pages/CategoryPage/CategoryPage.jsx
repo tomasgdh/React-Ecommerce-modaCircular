@@ -42,7 +42,7 @@ const Category = () => {
       {filteredClothing.map((cloth) => {
         return (
           <div style={{ margin: 10 }} key={cloth.id}>
-            <ClothingCard data={cloth} />
+            <ClothingCard item={cloth} />
           </div>
         );
       })}

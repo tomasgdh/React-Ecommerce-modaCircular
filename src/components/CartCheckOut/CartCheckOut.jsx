@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Box, Typography, Button,} from '@mui/material';
+import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Button,} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 
@@ -13,10 +13,6 @@ const CartCheckOut = () => {
   const handleDelete = (id) => {
       deleteItem( id )
   }
-  console.log("cart:",cart)  
-  console.log("cartLen:",cart.length) 
-  console.log("cart1:",cart[0])
-  console.log("cart1:", cart.length > 0 ?? cart[0].price1 * cart[0].quantity)
   return (
     <div style={{ display: 'flex',}}>
       <TableContainer style={{marginTop:"25px", marginRight:"10px"}} md="8" component={Paper}>
@@ -35,7 +31,6 @@ const CartCheckOut = () => {
         {                                      
             cart.length > 0 ?
             cart.map(item => {
-              {console.log("item",item)}
                    return <TableRow key={item.id}>
                         <TableCell>
                             <Link to={`/detail/${item.id}`}>
@@ -78,8 +73,8 @@ const CartCheckOut = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <div style={{borderRadius:"5px"}}>
-        <Table style={{marginTop:"25px", minWidth:"200px"}}>
+      <div >
+        <Table style={{marginTop:"25px", minWidth:"200px", border: "1px solid rgba(224, 224, 224, 1)", borderRadius:"5px"}}>
           <TableHead>
             <TableRow  style={{backgroundColor:"#1976d2",}} >
               <TableCell style={{fontWeight: 'bold',  color:"white",textAlign:"center"}}>Resumen de compra</TableCell>

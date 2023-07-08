@@ -19,11 +19,10 @@ import "./App.css";
 
 const App = () => {
   return (
-	<CartProvider>
     <Router>
+      <CartProvider>
       <div className="App">		
         <ResponsiveAppBar />
-		<br />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -34,8 +33,9 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      </CartProvider>
     </Router>
-    </CartProvider>
+
   );
 };
 

@@ -2,19 +2,19 @@ import {useState, useEffect, createContext} from 'react'
 import CustomizedSnackbars from '../components/SnackBar/SnackBar'
 
 // 1 - CREAMOS EL CONTEXTO => CartContext y lo expusimos con un export
-// 2 - CREAR EL COMPONENTE PROVIDER tambien lo expusimos para implementarlo como un HOC
+// 2 - CREAR EL COMPONENTE PROVIDER tambien lo expusimos para implementarlo como un HOC (high order Component)
 // 3 - RETONAR NUESTRO CONTEXT  (CartContext) CON UN .PROVIDER
 // 4 - RECIBIR CHILDREN Y USAR PROP VALUE PARA PASAR DATA Y LOGICA
 //Creamos el contexto
 export const CartContext = createContext();
 //calculamos el valor inicial del Carrito
-const init = JSON.parse(localStorage.getItem("cart")) || []
+const initialState = JSON.parse(localStorage.getItem("cart")) || []
 
 //Creamos el provider
 
 // eslint-disable-next-line react/prop-types
 export const CartProvider = ({children}) =>{ 
-    const[cart,setCart] = useState(init); //seteamos el carrito con el valor inicial
+    const[cart,setCart] = useState(initialState); //seteamos el carrito con el valor inicial
     const[msg,setMsg] = useState("");
     const[isAdd,setIsAdd] = useState(false);
     //cada vez que el carrito cambia de estado, actualiza el LocalStorage
@@ -63,7 +63,6 @@ export const CartProvider = ({children}) =>{
     //limpiamos el carrito
     const clearCart = () => {
         setCart([]);
-        console.log("clearCart");
     }
 
     const value = {

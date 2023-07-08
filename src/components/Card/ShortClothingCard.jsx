@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {useContext} from 'react'
-import {Card,CardActions,CardContent,CardMedia,Button,Typography} from "@mui/material";
+import {Card,CardActions,CardContent,CardMedia,Button,Typography, Chip} from "@mui/material";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 // Styles
@@ -32,6 +32,10 @@ const ClothingCard = ({ item }) => {
         <Typography variant="body2" color="text.secondary">
           {item.ShortDescription}
         </Typography>
+        {(item.off != "")?
+            <Chip label={`${item.off}% OFF`} color="success" />
+          : null
+          }
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Typography variant="body2">{`$ ${item.price1}`}</Typography>
           <Typography
@@ -39,8 +43,10 @@ const ClothingCard = ({ item }) => {
             sx={{ marginLeft: 2 }}
             variant="body2"
             color="text.secondary"
-          >
-            {`$ ${item.price2}`}
+          > {(item.price2 != "")?
+            `$ ${item.price2}`
+          : null
+          }
           </Typography>
         </div>
       </CardContent>
