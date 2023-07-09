@@ -14,7 +14,7 @@ const CartCheckOut = () => {
       deleteItem( id )
   }
   return (
-    <div style={{ display: 'flex',}}>
+    <div style={{ display: 'flex', marginTop:"20px"}}>
       <TableContainer style={{marginTop:"25px", marginRight:"10px"}} md="8" component={Paper}>
         <Table>
           <TableHead>

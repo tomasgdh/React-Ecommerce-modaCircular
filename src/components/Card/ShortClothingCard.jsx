@@ -16,14 +16,13 @@ const ClothingCard = ({ item }) => {
   return (
     <div className="card-product" >
     <Card sx={{ width: 250, marginBottom: "10px", textDecoration: "none" }}>
-      <Link style={{ textDecoration: "none" }} to={`/detail/${item.id}`}>
+      <Link style={{ textDecoration: "none", listStyletype:"none" }} to={`/detail/${item.id}`}>
         <CardMedia
           component="img"
           sx={{ height: 250 }}
           image={path + item.img}
           title={item.title}
-        />
-      </Link>
+        />     
 
       <CardContent>
         <Typography gutterBottom variant="body1" component="div">
@@ -50,6 +49,7 @@ const ClothingCard = ({ item }) => {
           </Typography>
         </div>
       </CardContent>
+      </Link>
       <CardActions>
         <Button
           size="small"
