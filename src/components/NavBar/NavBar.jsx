@@ -79,8 +79,6 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <Typography
             variant="h6"
-            noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -91,9 +89,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            <Link className="li2" to="/">
-              {titleBar}
-            </Link>
+            <Link className="li2" to="/"> {titleBar} </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -135,10 +131,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <Link to="/">
             <LogoMaria />
-          </Link>
-
           <Typography
             variant="h5"
             noWrap
@@ -181,7 +174,7 @@ function ResponsiveAppBar() {
           <Box>
              <CartWidget />                             
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          {/*<Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -209,7 +202,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+              </Box>*/}
           <Menu
             id="category-menu"
             anchorEl={categoryAnchorEl}

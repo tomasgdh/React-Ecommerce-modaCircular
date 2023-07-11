@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 //Contexto
 import { CartContext } from '../../context/CartContext';
 
+//CSS
+import "../Card/ClothingCard.css";
+
 const CartCheckOut = () => {
   const { getCart, getProductsTotalPrice, deleteItem, clearCart } = useContext(CartContext)
-  let path = "/Static/Images/";
   const cart = getCart();
   const handleDelete = (id) => {
       deleteItem( id )
@@ -34,13 +36,13 @@ const CartCheckOut = () => {
                    return <TableRow key={item.id}>
                         <TableCell>
                             <Link to={`/detail/${item.id}`}>
-                                <img src={path + item.img} alt="" width="50"/>
+                                <img src={item.img} className="card-product" alt="" width="50"/>
                             </Link>
                         </TableCell>
                         <TableCell>{item.name}</TableCell>
                         <TableCell>{item.quantity}</TableCell>
-                        <TableCell>$ {item.price1.toLocaleString("es-AR")}</TableCell>
-                        <TableCell>$ {(item.price1 * item.quantity).toLocaleString("es-AR")}</TableCell>
+                        <TableCell>$ {item.price.toLocaleString("es-AR")}</TableCell>
+                        <TableCell>$ {(item.price * item.quantity).toLocaleString("es-AR")}</TableCell>
                         <TableCell>
                             <Button size="small" color="secondary" onClick={() => handleDelete(item.id)}>
                                 <DeleteIcon />

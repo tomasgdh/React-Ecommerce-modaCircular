@@ -16,7 +16,8 @@ const initialState = JSON.parse(localStorage.getItem("cart")) || []
 export const CartProvider = ({children}) =>{ 
     const[cart,setCart] = useState(initialState); //seteamos el carrito con el valor inicial
     const[msg,setMsg] = useState("");
-    const[isAdd,setIsAdd] = useState(false);
+    const[mostarMsg,setMostarMsg] = useState(false);
+    const[typeMessage,setTypeMessage] = useState("success");
     //cada vez que el carrito cambia de estado, actualiza el LocalStorage
     useEffect(()=>{
         localStorage.setItem("cart",JSON.stringify(cart))
@@ -25,21 +26,39 @@ export const CartProvider = ({children}) =>{
     const addItemToCart = (item, quantity) => {        
         const newItem = { quantity, ...item}
         let replaced = false
+        let isStockOk = false
+
+        if(quantity <= item.stock)
+            isStockOk = true
         const newCart = cart.map(product => {
             if(product.id === item.id){
-                product.quantity +=quantity
-                replaced = true;
+                if(product.quantity + quantity <= item.stock)
+                {
+                    product.quantity +=quantity
+                    replaced = true;
+                    isStockOk = true
+                }
+                else
+                isStockOk = false
             }
             return product
         })
 
-        if(replaced){setCart(newCart)}
-        else{setCart([...cart,newItem])}
-        setIsAdd(true);
-        setMsg(`${item.name} fue agregado al carrito`);
+        if(isStockOk){
+            if(replaced){setCart(newCart)}
+            else{setCart([...cart,newItem])}
+            setMostarMsg(true);
+            setTypeMessage("success");
+            setMsg(`${item.name} fue agregado al carrito`);
+        }
+        else{
+            setMostarMsg(true);
+            setTypeMessage("error");
+            setMsg(`${item.name} No pudo ser agregado, Stock insuficiente!`);
+        }
     }
     const handlerCloseSnackBar = () => {
-        setIsAdd(false);
+        setMostarMsg(false);
         setMsg("");
       };
 
@@ -49,7 +68,7 @@ export const CartProvider = ({children}) =>{
     }
     //devuelve y calcula el precio total del carrito
     const getProductsTotalPrice = () => {
-        return cart.reduce((accum, item) => accum + (item.quantity * item.price1), 0)
+        return cart.reduce((accum, item) => accum + (item.quantity * item.price), 0)
     }
     //devolvemos el carrito
     const getCart = () => {
@@ -79,8 +98,8 @@ export const CartProvider = ({children}) =>{
         <CartContext.Provider value={value}>
             {children}
             <CustomizedSnackbars 
-                    openSb={isAdd}
-                    typeMessage='success'
+                    openSb={mostarMsg}
+                    typeMessage={typeMessage}
                     messageSnackBar={msg}
                     onCloseSnackbar={handlerCloseSnackBar}
 
