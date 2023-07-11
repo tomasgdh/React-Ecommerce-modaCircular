@@ -45,7 +45,9 @@ const CardListContainer = () => {
       })
       setClothing(docs);
     };
-    getClothing().finally(setIsLoading(false));
+    getClothing().finally( () =>{      
+      setIsLoading(false)
+     })
   }, []);
 
 
