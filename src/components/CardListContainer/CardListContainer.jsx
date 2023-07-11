@@ -42,14 +42,10 @@ const CardListContainer = () => {
       querySnapshot.forEach((doc) => {
         // console.log('DATA:', doc.data(), 'ID:', doc.id);
         docs.push({ ...doc.data(), id: doc.id });
-      });
-      // console.log(docs);
+      })
       setClothing(docs);
     };
-    getClothing();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    getClothing().finally(setIsLoading(false));
   }, []);
 
 

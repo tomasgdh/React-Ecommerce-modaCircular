@@ -2,50 +2,62 @@ import { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 //import axios from "axios";
 
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebaseConfig";
+
 // Components
 import ClothingCard from "../../components/Card/ShortClothingCard";
-
+import Spinner from "../../components/Spinner/Spinner";
 // Styles
 import "../../components/CardList/CardList.css";
 
 const Category = () => {
-  const [clothing, setClothing] = useState([]);
+  const [clothingByCategory, setClothingByCategory] = useState([]);
+  
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   let { categoryId } = useParams();
 
-  let filteredClothing = clothing.filter((cloth) => {
-    return cloth.categoryId === categoryId;
-  });
-
-  /*useEffect(() => {
-    //axios(`${process.env.VITE_APP_BASE_URL}`).then((json) =>
-    axios(`./../data/Clothing.json/`).then((json) =>
-      setClothing(json.data.results)
-    );
-  }, []);*/
-
   useEffect(() => {
-    fetch("./../data/Clothing.json")
-      .then((response) => response.json())
-      .then((data) => setClothing(data));
-  }, []);
-
-  useEffect(() => {
-    if(clothing.length != 0 && filteredClothing.length == 0 ){
-      navigate("/not-found");
-    }
-  }, [filteredClothing,clothing,navigate]);
+    setIsLoading(true)
+    const getPlayer = async () => {
+      const q = query(
+        collection(db, "Clothes"),
+        where("categoryId", "==", categoryId)
+      );
+      const docs = [];
+      const querySnapshot = await getDocs(q);
+      // console.log('DATA:', querySnapshot);
+      querySnapshot.forEach((doc) => {
+        // console.log('DATA:', doc.data(), 'ID:', doc.id);
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      // console.log(docs);
+      setClothingByCategory(docs);
+      if(docs.length == 0 ){
+        navigate("/not-found");
+      }
+    };
+    getPlayer().finally( () =>{      
+      setIsLoading(false)
+     })
+  }, [categoryId]);
 
   return (
     <div className="CardList">
-      {filteredClothing.map((cloth) => {
-        return (
-          <div style={{ margin: 10 }} key={cloth.id}>
-            <ClothingCard item={cloth} />
-          </div>
-        );
-      })}
+
+    {isLoading ? (
+        <Spinner />
+      ) : clothingByCategory.length > 1 ? (
+        clothingByCategory.map((cloth) => {
+          return (
+            <div style={{ margin: 10 }} key={cloth.id}>
+              <ClothingCard item={cloth} />
+            </div>
+          );
+        })
+      ) : null}
     </div>
   );
 };

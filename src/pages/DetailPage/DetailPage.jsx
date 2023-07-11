@@ -11,6 +11,7 @@ import { db } from "../../firebase/firebaseConfig";
 
 // Components
 import ClothingCard from "../../components/Card/ClothingCard";
+import Spinner from "../../components/Spinner/Spinner";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const DetailPage = () => {
   let { id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     const getCloth = async () => {
       const q = query(
         collection(db, "Clothes"),
@@ -32,16 +34,15 @@ const DetailPage = () => {
         // console.log('DATA:', doc.data(), 'ID:', doc.id);
         docs.push({ ...doc.data(), id: doc.id });
       });
-      // console.log(docs);
-      setCloth(docs);
+      setCloth(docs.length > 0 ? docs[0] :[]);
+      if(docs.length  == 0){
+        navigate("/not-found");
+      };
     };
-    getCloth();
-    if(cloth === undefined && clothing.length != 0){
-      navigate("/not-found");
-    }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
+    getCloth().finally( () =>{      
+      setIsLoading(false)
+     })
+
   }, [id]);
 
   

@@ -24,7 +24,7 @@ const NotFoundPage = () => {
     }, [countdown]);
   
     return (
-      <div>
+      <div style={{marginTop:"35px"}}>
         <h1>404 - Page Not Found!</h1>
         <p>Serás redirigido a la página principal en {countdown} segundos...</p>
       </div>
