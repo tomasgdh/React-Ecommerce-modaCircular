@@ -16,14 +16,16 @@ const ClothingCard = ({ item }) => {
   return (
     <div className="card-product" >
       
-    <Card sx={{ width: 250, marginBottom: "10px" }}>
+    <Card sx={{ width: 250, marginBottom: "10px"}}>
       <Link className='link' to={`/detail/${item.id}`}>
+      <div class="container">
         <CardMedia
           component="img"
           sx={{ height: 250 }}
           image={item.img}
           title={item.title} />     
-
+      {(item.off != "")? <Chip label={`${item.off}% OFF`} color="success" className="overlay-button"/>   : null }
+      </div>
       <CardContent>
         <Typography gutterBottom variant="body1" component="div">
           {item.name}
@@ -31,7 +33,7 @@ const ClothingCard = ({ item }) => {
         <Typography variant="body2" color="text.secondary">
           {item.ShortDescription}
         </Typography>
-        {(item.off != "")? <Chip label={`${item.off}% OFF`} color="success" />   : null }
+
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Typography variant="body2">{`$ ${item.price}`}</Typography>
           <Typography
@@ -47,8 +49,8 @@ const ClothingCard = ({ item }) => {
         </div>
       </CardContent>
       </Link>
-      <CardActions sx={{display: "flex", justifyContent: "center"}}>
-        <Button
+      <CardActions style={{ display: "flex", flexWrap:"wrap", justifyContent: "center"}}>
+        <Button         
           size="small"
           color="primary"
           onClick={(HandlerClickAgregarCarrito)}
