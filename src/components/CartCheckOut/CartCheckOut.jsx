@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Button,} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 //Contexto
 import { CartContext } from '../../context/CartContext';
@@ -11,9 +11,13 @@ import "../Card/ClothingCard.css";
 
 const CartCheckOut = () => {
   const { getCart, getProductsTotalPrice, deleteItem, clearCart } = useContext(CartContext)
-  const cart = getCart();
+  const navigate = useNavigate()
+  const cart = getCart()
   const handleDelete = (id) => {
       deleteItem( id )
+  }
+  const payWallPage = () =>{
+    navigate("/paywall")
   }
   return (
     <div style={{ display: 'flex', marginTop:"20px"}}>
@@ -88,7 +92,7 @@ const CartCheckOut = () => {
             </TableRow>
             <TableRow>
                 <TableCell style={{textAlign:"center"}}>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={payWallPage}>
                     Pagar
                   </Button>                                                                                           
                 </TableCell>

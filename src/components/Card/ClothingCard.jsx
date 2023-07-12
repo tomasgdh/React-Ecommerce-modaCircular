@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import {Card,CardContent,CardMedia,Typography,Chip, Grid} from "@mui/material";
+
+
 //Componentes
 import ItemCounter from '../ItemCounter/ItemCounter';
+import ButtonBack from '../ButtonBack/ButtonBack';
 
 const ClothingCard = ({ data }) => {
   return (<>
@@ -14,7 +17,8 @@ const ClothingCard = ({ data }) => {
           />
           <CardContent  sx={{maxWidth:"431px", }}>
           <Grid container spacing={2} style={{marginTop:"10px", flexDirection:"column"}}>
-          <Grid item>           
+          <Grid item>
+            <ButtonBack/>      
             <Typography variant="h5" >
                 {data.name }
             </Typography>
