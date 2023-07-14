@@ -25,10 +25,10 @@ const CartCheckOut = () => {
         <Table>
           <TableHead>
             <TableRow  style={{backgroundColor:"#1976d2",}} >
-              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Imagen</TableCell>
-              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Producto</TableCell>
-              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Cantidad</TableCell>
-              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Precio</TableCell>
+              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Image</TableCell>
+              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Product</TableCell>
+              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Quantity</TableCell>
+              <TableCell style={{fontWeight: 'bold',  color:"white"}}>Price</TableCell>
               <TableCell style={{fontWeight: 'bold',  color:"white"}}>Total</TableCell>
               <TableCell style={{fontWeight: 'bold',  color:"white"}}></TableCell>
             </TableRow>
@@ -58,7 +58,7 @@ const CartCheckOut = () => {
             :                                                    
             <TableRow>
                 <TableCell colSpan="6" className="text-center">
-                    No hay productos en el carrito
+                  There are no products in the cart
                 </TableCell>
             </TableRow>
         }
@@ -71,7 +71,7 @@ const CartCheckOut = () => {
                 {
                     cart.length > 0 &&                                  
                     <Button variant="contained" color="primary" onClick={ clearCart } >
-                        Vaciar carrito
+                        Empty Cart
                     </Button>
                 }                                                                                                
                 </TableCell>
@@ -83,18 +83,21 @@ const CartCheckOut = () => {
         <Table style={{marginTop:"25px", minWidth:"200px", border: "1px solid rgba(224, 224, 224, 1)", borderRadius:"5px"}}>
           <TableHead>
             <TableRow  style={{backgroundColor:"#1976d2",}} >
-              <TableCell style={{fontWeight: 'bold',  color:"white",textAlign:"center"}}>Resumen de compra</TableCell>
+              <TableCell style={{fontWeight: 'bold',  color:"white",textAlign:"center"}}>Purchase Summary</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
           <TableRow>
-                <TableCell style={{textAlign:"center"}}>{`Total a pagar: $${getProductsTotalPrice().toLocaleString("es-AR")}`}</TableCell>
+                <TableCell style={{textAlign:"center"}}>{`Total to pay: $${getProductsTotalPrice().toLocaleString("es-AR")}`}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{textAlign:"center"}}>
-                  <Button variant="contained" color="primary" onClick={payWallPage}>
-                    Pagar
-                  </Button>                                                                                           
+                {
+                    cart.length > 0 &&                                  
+                    <Button variant="contained" color="primary" onClick={payWallPage}>
+                    Pay Purchase
+                    </Button>   
+                }                                                                                           
                 </TableCell>
             </TableRow> 
           </TableBody>

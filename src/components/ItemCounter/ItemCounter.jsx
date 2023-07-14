@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import {Grid,Button,Typography} from "@mui/material";
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 const ItemCounter = ({item}) =>  {
     const [counter, setCounter] = useState( item.stock > 0 ? 1 : 0)
@@ -34,7 +35,7 @@ const ItemCounter = ({item}) =>  {
         </Grid>
         <Grid item>
             <Button variant="contained" onClick={HandlerClickAgregarCarrito} disabled={ counter === 0 }>
-            Agregar al carrito 
+            Add To Cart
             </Button>
         </Grid>
     </Grid>

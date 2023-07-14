@@ -4,7 +4,7 @@ import React, { useState,useContext } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 
-import {TextField, } from "@mui/material";
+import {TextField, Typography,Button,Paper} from "@mui/material";
 
 //Components
 import ButtonBack from '../ButtonBack/ButtonBack'
@@ -52,9 +52,9 @@ const CheckOut = () => {
   };
 
   return (
-    <div style={styles.containerShop}>
-       <ButtonBack/> 
-      <h1 style={{ color: "white" }}>Formulario de pago</h1>
+    <Paper style={{marginTop:"40px"}} elevation={3} >
+       <ButtonBack style={{marginTop:"10px"}}/> 
+      <Typography variant="h3">{`Formulario de pago`}</Typography>
       <form className="FormContainer" onSubmit={onSubmit}>
         <TextField
           placeholder="Name"
@@ -74,6 +74,7 @@ const CheckOut = () => {
         />
         <TextField
           placeholder="Mail"
+          label="Mail"
           style={{ margin: 10, width: 400 }}
           name="mail"
           value={values.mail}
@@ -81,17 +82,22 @@ const CheckOut = () => {
         />
         <TextField
           placeholder="Confirm Mail"
+          label="Confirm Mail"
           style={{ margin: 10, width: 400 }}
           name="confirmMail"
           value={values.confirmMail}
           onChange={handleOnChange}
         />
-        <button className="btnASendAction" type="submit">
-          Send
-        </button>
+        <Button         
+          size="small"
+          color="primary"
+          onClick={(onSubmit)}
+          variant="contained"  >
+          Pay Purchase
+        </Button>
       </form>
-      {purchaseID && <MessageSuccess purchaseID={purchaseID} />}
-    </div>
+      {purchaseID && <CustomMessage purchaseID={purchaseID} />}
+    </Paper>
   );
 };
 

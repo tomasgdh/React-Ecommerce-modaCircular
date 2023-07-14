@@ -55,7 +55,7 @@ const ClothingCard = ({ item }) => {
           color="primary"
           onClick={(HandlerClickAgregarCarrito)}
           variant="contained"  >
-          Agregar al Carrito
+          Add to Cart
         </Button>
       </CardActions>
     </Card>

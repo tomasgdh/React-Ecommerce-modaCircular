@@ -13,22 +13,22 @@ const AboutPage = () => {
       <Grid container spacing={2} style={{marginTop:"10px", flexDirection:"column"}}>
         <Grid item>  
         <Typography variant="h4" >
-          {"¿Quiénes somos?"}
+          {"About us?"}
         </Typography>
         </Grid>
         <Grid item> 
         <Typography  variant="h6" >
-          {"No somos solamente una feria americana. Somos un emprendimiento familiar, que tiene como objetivo ofrecerte prendas nuevas y como nuevas de calidad y de las mejores marcas con precios accesibles."}
+          {"We are not just an American fair. We are a family business, whose objective is to offer you new and like-new quality garments and the best brands at affordable prices."}
         </Typography>
         </Grid>
         <Grid item> 
         <Typography  variant="h6" >
-          {"Desde MARÍA MODA CIRCULAR buscamos promover el cuidado del medio ambiente, a través del consumo consciente y la recirculación de prendas."}
+          {"From MARÍA MODA CIRCULAR we seek to promote care for the environment, through conscious consumption and the recirculation of garments."}
         </Typography>
         </Grid>
         <Grid item> 
         <Typography  variant="h6" >
-          {"Te esperamos en nuestro local de Flores para que vos también te sumes y seas parte de esta movida."}
+          {"We are waiting for you at our local Flores so that you can also join and be part of this movement."}
         </Typography>
         </Grid>
         </Grid>

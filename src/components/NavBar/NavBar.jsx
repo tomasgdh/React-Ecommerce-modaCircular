@@ -16,7 +16,7 @@ const pages = [
   { title: "Home", url: "/" },
   //{ title: "Products", url: "/products" },
   { title: "Category", url: "/category" },
-  { title: "Contact", url: "/contact" },
+  //{ title: "Contact", url: "/contact" },
   { title: "About", url: "/about" },
 ];
 const categories = [
@@ -28,7 +28,7 @@ const categories = [
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const titleBar = "Moda Circular";
+const titleBar = "Circle Fashion";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
