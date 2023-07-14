@@ -1,7 +1,7 @@
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMessage="error"})=> {
+const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMessage="error",duration=1500})=> {
 
   const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
@@ -12,7 +12,7 @@ const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMe
     };
 
   return (
-      <Snackbar open={openSb}  autoHideDuration={1500} anchorOrigin={{vertical: 'top',horizontal: 'center' }} onClose={handleClose} >
+      <Snackbar open={openSb}  autoHideDuration={duration} anchorOrigin={{vertical: 'top',horizontal: 'center' }} onClose={handleClose} >
         <Alert onClose={handleClose} variant='filled' severity={typeMessage} sx={{ width: '100%' }}>
           {messageSnackBar}
         </Alert>

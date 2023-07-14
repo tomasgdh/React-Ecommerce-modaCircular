@@ -18,7 +18,7 @@ const ClothingCard = ({ item }) => {
       
     <Card sx={{ width: 250, marginBottom: "10px"}}>
       <Link className='link' to={`/detail/${item.id}`}>
-      <div class="container">
+      <div className="container">
         <CardMedia
           component="img"
           sx={{ height: 250 }}

@@ -1,5 +1,5 @@
 import {useState, useEffect, createContext} from 'react'
-import CustomizedSnackbars from '../components/CustomMessage/CustomMessage'
+import CustomMessage from '../components/CustomMessage/CustomMessage'
 
 // 1 - CREAMOS EL CONTEXTO => CartContext y lo expusimos con un export
 // 2 - CREAR EL COMPONENTE PROVIDER tambien lo expusimos para implementarlo como un HOC (high order Component)
@@ -97,7 +97,7 @@ export const CartProvider = ({children}) =>{
     return (
         <CartContext.Provider value={value}>
             {children}
-            <CustomizedSnackbars 
+            <CustomMessage 
                     openSb={mostarMsg}
                     typeMessage={typeMessage}
                     messageSnackBar={msg}
