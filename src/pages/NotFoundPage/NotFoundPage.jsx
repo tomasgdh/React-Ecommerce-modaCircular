@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
+
+//Router
 import { useNavigate } from 'react-router-dom';
+
+//MUI Components
+import {Typography} from "@mui/material";
 
 const NotFoundPage = () => {
     const navigate = useNavigate();
@@ -25,8 +30,8 @@ const NotFoundPage = () => {
   
     return (
       <div style={{marginTop:"35px"}}>
-        <h1>404 - Page Not Found!</h1>
-        <p>Serás redirigido a la página principal en {countdown} segundos...</p>
+        <Typography variant="h2">{`404 - Page Not Found!`}</Typography>
+        <Typography variant="h4">{`Serás redirigido a la página principal en ${countdown} segundos...`}</Typography>
       </div>
     );
   };

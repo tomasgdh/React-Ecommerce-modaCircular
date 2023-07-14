@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+
+// Router
 import { useParams,useNavigate,Outlet } from "react-router-dom";
-//import axios from "axios";
+
+// Firebase
 import { collection,
   query,
   where,
@@ -9,7 +12,7 @@ import { collection,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 
-// Components
+// own Components
 import ClothingCard from "../../components/Card/ClothingCard";
 import Spinner from "../../components/Spinner/Spinner";
 
@@ -29,9 +32,7 @@ const DetailPage = () => {
       );
       const docs = [];
       const querySnapshot = await getDocs(q);
-      // console.log('DATA:', querySnapshot);
       querySnapshot.forEach((doc) => {
-        // console.log('DATA:', doc.data(), 'ID:', doc.id);
         docs.push({ ...doc.data(), id: doc.id });
       });
       setCloth(docs.length > 0 ? docs[0] :[]);
@@ -44,7 +45,6 @@ const DetailPage = () => {
      })
 
   }, [id]);
-
   
   return (
     <div style={{ display: "flex", justifyContent: "center", margin: 20 }}>

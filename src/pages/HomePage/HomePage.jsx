@@ -1,4 +1,4 @@
-// Components
+// Own Components
 import CardListContainer from "../../components/CardListContainer/CardListContainer";
 
 const HomePage = () => {

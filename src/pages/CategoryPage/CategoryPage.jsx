@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
-//import axios from "axios";
 
+// FIREBASE
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 
-// Components
+// OWN Components
 import ClothingCard from "../../components/Card/ShortClothingCard";
 import Spinner from "../../components/Spinner/Spinner";
 // Styles
@@ -28,12 +28,10 @@ const Category = () => {
       );
       const docs = [];
       const querySnapshot = await getDocs(q);
-      // console.log('DATA:', querySnapshot);
       querySnapshot.forEach((doc) => {
-        // console.log('DATA:', doc.data(), 'ID:', doc.id);
         docs.push({ ...doc.data(), id: doc.id });
       });
-      // console.log(docs);
+
       setClothingByCategory(docs);
       if(docs.length == 0 ){
         navigate("/not-found");
@@ -44,9 +42,8 @@ const Category = () => {
      })
   }, [categoryId]);
 
-  return (
+  return (<>
     <div className="CardList">
-
     {isLoading ? (
         <Spinner />
       ) : clothingByCategory.length > 1 ? (
@@ -59,6 +56,7 @@ const Category = () => {
         })
       ) : null}
     </div>
+    </>
   );
 };
 

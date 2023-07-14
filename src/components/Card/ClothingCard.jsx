@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-
+// MUI Components
 import {Card,CardContent,CardMedia,Typography,Chip, Grid} from "@mui/material";
 
-
-//Componentes
+// Own Components
 import ItemCounter from '../ItemCounter/ItemCounter';
 import ButtonBack from '../ButtonBack/ButtonBack';
 
@@ -38,6 +36,7 @@ const ClothingCard = ({ data }) => {
             </Typography>
           </Grid>
           <Grid item> 
+          {(data.stock < 1 )? <Chip label={`SOLD OUT`} style={{marginLeft:"5px",marginRight:"5px",}} color="error" />   : null } 
             <Typography variant="h6">{`Stock: ${data.stock}`}</Typography>
           </Grid>
           <Grid item> 

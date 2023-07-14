@@ -1,4 +1,4 @@
-// Components
+// Own Components
 import CartCheckOut from "../../components/CartCheckOut/CartCheckOut";
 
 const CartCheckOutPage = () => {

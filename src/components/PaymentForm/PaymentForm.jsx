@@ -1,4 +1,6 @@
 import React, { useState,useEffect, useContext } from "react";
+
+// Router
 import { useNavigate } from "react-router-dom";
 
 //FIREBASE
@@ -7,7 +9,7 @@ import { db } from "../../firebase/firebaseConfig";
 
 
 //MUI Components
-import {TextField, Typography,Button,Paper} from "@mui/material";
+import {TextField, Typography,Button,Paper,Grid} from "@mui/material";
 
 //Own Components
 import ButtonBack from '../ButtonBack/ButtonBack'
@@ -23,7 +25,7 @@ const initialState = {
   confirmMail: ""
 };
 
-const CheckOut = () => {
+const PaymentForm = () => {
   const [values, setValues] = useState(initialState);
   // Este estado está destinado a guardar el id de la compra
   const [purchaseID, setPurchaseID] = useState(null);
@@ -59,8 +61,9 @@ const CheckOut = () => {
   }, [countdown, purchaseID, navigate]);
 
   const onSubmit = async (e) => {
+
     e.preventDefault();
-    if(values.mail != "" && values.mail != values.confirmMail){
+    if(values.mail && values.confirmMail && (values.mail == "" || values.mail != values.confirmMail)){
       setMsg('Error: Mails do not match!')
       setTypeMessage('error');
       setDurationMsg(2000)
@@ -79,11 +82,6 @@ const CheckOut = () => {
         total: getProductsTotalPrice(),
         data: serverTimestamp()
     }
-    console.log("buyer:",buyer)
-    console.log("order:",order)
-    /* const db = getFirestore()
-    db.collection("purchasesCollection")
-    .add(order)*/
       // Add a new document with a generated id.
     const docRef = await addDoc(collection(db, "purchasesCollection"), {
       order,
@@ -109,9 +107,16 @@ const CheckOut = () => {
 
   return (<>
     <Paper style={{marginTop:"40px"}} elevation={3} >
-       <ButtonBack style={{marginTop:"10px"}}/> 
+    <form className="FormContainer" onSubmit={onSubmit}>
+    <Grid container spacing={2} style={{marginTop:"10px", flexDirection:"column"}}>
+      <Grid item>
+       <ButtonBack style={{marginTop:"10px"}}/>
+      </Grid>
+      <Grid item>  
       <Typography variant="h3">{`Payment Form`}</Typography>
-      <form className="FormContainer" onSubmit={onSubmit}>
+      </Grid>
+
+      <Grid item>
         <TextField
           placeholder="Name"
           label="Name"
@@ -120,6 +125,8 @@ const CheckOut = () => {
           value={values.name}
           onChange={handleOnChange}
         />
+        </Grid>
+      <Grid item>
         <TextField
           placeholder="Last Name"
           label="Last Name"
@@ -128,6 +135,8 @@ const CheckOut = () => {
           value={values.lastName}
           onChange={handleOnChange}
         />
+        </Grid>
+      <Grid item>
         <TextField
           placeholder="Mail"
           label="Mail"
@@ -136,6 +145,8 @@ const CheckOut = () => {
           value={values.mail}
           onChange={handleOnChange}
         />
+        </Grid>
+      <Grid item>
         <TextField
           placeholder="Confirm Mail"
           label="Confirm Mail"
@@ -144,17 +155,21 @@ const CheckOut = () => {
           value={values.confirmMail}
           onChange={handleOnChange}
         />
-        <Button         
+        </Grid>
+      <Grid item>
+        <Button  style={{marginBottom:"20px"}} 
+          disabled={(values.mail != "" && values.mail === values.confirmMail) ? false : true }      
           size="small"
           color="primary"
           onClick={(onSubmit)}
           variant="contained"  >
           Pay Purchase
         </Button>
+        </Grid>      
+      </Grid>
       </form>
-      {/*purchaseID && <CustomMessage purchaseID={purchaseID} />*/}
     </Paper>
-    <CustomMessage 
+    <CustomMessage     
     openSb={mostarMsg}
     typeMessage={typeMessage}
     messageSnackBar={msg}
@@ -164,4 +179,4 @@ const CheckOut = () => {
   );
 };
 
-export default CheckOut;
+export default PaymentForm;

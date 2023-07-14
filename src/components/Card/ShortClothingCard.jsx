@@ -1,7 +1,10 @@
-/* eslint-disable react/prop-types */
+
 import {useContext} from 'react'
+// MUI Components
 import {Card,CardActions,CardContent,CardMedia,Button,Typography, Chip} from "@mui/material";
+// Router
 import { Link } from "react-router-dom";
+// Context
 import { CartContext } from "../../context/CartContext";
 
 // Styles
@@ -11,7 +14,7 @@ const ClothingCard = ({ item }) => {
   const { addItemToCart } = useContext(CartContext)
 
   const HandlerClickAgregarCarrito = () => {
-    addItemToCart(item, 1);/*counter */
+    addItemToCart(item, 1);
   };
   return (
     <div className="card-product" >
@@ -23,7 +26,8 @@ const ClothingCard = ({ item }) => {
           component="img"
           sx={{ height: 250 }}
           image={item.img}
-          title={item.title} />     
+          title={item.title} />  
+      {(item.stock < 1 )? <Chip label={`SOLD OUT`} color="error" className="overlay-button2"/>   : null }  
       {(item.off != "")? <Chip label={`${item.off}% OFF`} color="success" className="overlay-button"/>   : null }
       </div>
       <CardContent>

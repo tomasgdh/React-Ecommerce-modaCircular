@@ -1,10 +1,14 @@
 import { useContext } from "react";
+// MUI Components
 import { Badge } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import "./CartWidget.css";
-import { CartContext } from "../../context/CartContext";
-import { Link } from "react-router-dom";
 
+//Context
+import { CartContext } from "../../context/CartContext";
+//Router
+import { Link } from "react-router-dom";
+//Css
+import "./CartWidget.css";
 const CartWidget = () => {
 
   const { getProductsQuantity } = useContext(CartContext);

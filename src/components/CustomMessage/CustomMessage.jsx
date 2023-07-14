@@ -1,5 +1,5 @@
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+// MUI Components
+import {Snackbar,Alert} from '@mui/material';
 
 const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMessage="error",duration=1500})=> {
 

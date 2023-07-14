@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
+// Context
 import { CartContext } from "../../context/CartContext";
+// MUI Components
 import {Grid,Button,Typography} from "@mui/material";
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 const ItemCounter = ({item}) =>  {
     const [counter, setCounter] = useState( item.stock > 0 ? 1 : 0)

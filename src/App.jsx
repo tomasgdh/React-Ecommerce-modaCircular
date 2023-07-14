@@ -12,7 +12,7 @@ import ContactPage from "./pages/ContactPage/ContactPage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import CartCheckoutPage from "./pages/CartCheckoutPage/CartCheckoutPage";
-import PaywallPage from "./pages/PaywallPage/PaywallPage";
+import PaymentFormPage from "./pages/PaymentFormPage/PaymentFormPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 // Styles
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/checkout" element={<CartCheckoutPage />} />
-          <Route path="/paywall" element={<PaywallPage />} />
+          <Route path="/paymentForm" element={<PaymentFormPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

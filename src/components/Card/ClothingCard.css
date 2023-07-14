@@ -27,3 +27,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .overlay-button2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }

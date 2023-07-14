@@ -1,9 +1,12 @@
 import { useContext } from 'react';
+// MUI Components
 import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Button,} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+// Router
 import { Link,useNavigate } from 'react-router-dom';
 
-//Contexto
+//Context
 import { CartContext } from '../../context/CartContext';
 
 //CSS
@@ -16,8 +19,8 @@ const CartCheckOut = () => {
   const handleDelete = (id) => {
       deleteItem( id )
   }
-  const payWallPage = () =>{
-    navigate("/paywall")
+  const paymentFormPage = () =>{
+    navigate("/paymentform")
   }
   return (
     <div style={{ display: 'flex', marginTop:"20px"}}>
@@ -52,8 +55,7 @@ const CartCheckOut = () => {
                                 <DeleteIcon />
                             </Button>
                         </TableCell>
-                    </TableRow>
-                                                           
+                    </TableRow>                                                           
             })                                            
             :                                                    
             <TableRow>
@@ -94,7 +96,7 @@ const CartCheckOut = () => {
                 <TableCell style={{textAlign:"center"}}>
                 {
                     cart.length > 0 &&                                  
-                    <Button variant="contained" color="primary" onClick={payWallPage}>
+                    <Button variant="contained" color="primary" onClick={paymentFormPage}>
                     Pay Purchase
                     </Button>   
                 }                                                                                           

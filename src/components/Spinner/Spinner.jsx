@@ -1,3 +1,4 @@
+// MUI Components
 import { CircularProgress, Box } from "@mui/material";
 
 const Spinner = () => {

@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-//Components
+
+// OWN Components
 import ClothingCard from "../Card/ShortClothingCard";
 
 //CSS

@@ -1,5 +1,7 @@
-
+// Router
 import { Link } from "react-router-dom";
+
+// CSS
 import './Logo.css'
 
 const LogoMaria = () => {
