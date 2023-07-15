@@ -73,3 +73,9 @@ Para iniciar el servidor en modo desarrollo.
 ```
 
 Esta acción abre una ventana en su browser con la url http://localhost:5173
+
+# Bibliotecas externas
+A continuación se listan las herramientas adicionales a React utilizadas para la implementación de algunas de las funcionalidades:
+- [Firebase](https://firebase.google.com/) -> Biblioteca de almacenamiento de datos en la nube.
+- [Material UI](https://mui.com/) -> Biblioteca de Stylos y componentes como Alert, Spinners, TextBox, Card, etc.
+- [React Router](https://reactrouter.com/en/main) -> Manejo de rutas dentro de toda la aplicacion.
