@@ -5,7 +5,7 @@ const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMe
 
   const handleClose = (event, reason) => {
       if (reason === 'clickaway') {
-        onCloseSnackbar();
+        //onCloseSnackbar();
         return;
       }    
       onCloseSnackbar();
@@ -13,7 +13,7 @@ const CustomizedSnackbars=({openSb,messageSnackBar,onCloseSnackbar=()=>{},typeMe
 
   return (
       <Snackbar open={openSb}  autoHideDuration={duration} anchorOrigin={{vertical: 'top',horizontal: 'center' }} onClose={handleClose} >
-        <Alert onClose={handleClose} variant='filled' severity={typeMessage} sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity={typeMessage} sx={{ width: '100%' }}>
           {messageSnackBar}
         </Alert>
       </Snackbar>

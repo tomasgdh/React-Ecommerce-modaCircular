@@ -9,7 +9,7 @@ import { db } from "../../firebase/firebaseConfig";
 
 
 //MUI Components
-import {TextField, Typography,Button,Paper,Grid} from "@mui/material";
+import {TextField, Typography,Button,Paper,Grid,Box,LinearProgress,Collapse,Alert} from "@mui/material";
 
 //Own Components
 import ButtonBack from '../ButtonBack/ButtonBack'
@@ -26,10 +26,11 @@ const initialState = {
 };
 
 const PaymentForm = () => {
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState(initialState)
   // Este estado está destinado a guardar el id de la compra
-  const [purchaseID, setPurchaseID] = useState(null);
+  const [purchaseID, setPurchaseID] = useState(null)
   const { getCart, getProductsTotalPrice, clearCart } = useContext(CartContext)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleOnChange = (e) => {
     const { value, name } = e.target;
@@ -46,14 +47,12 @@ const PaymentForm = () => {
   };
 
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(10);
 
   useEffect(() => {
     if (purchaseID != null && countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-      setMsg(`Gracias por tu compra:
-      El número de orden es: ${purchaseID} te esperamos en la tienda 😉!
-      Serás redirigido a la página principal en ${countdown} segundos...`)
+      setMsg(`Gracias por su Compra! El número de orden es: "${purchaseID.toUpperCase()}". Serás redirigido a la página principal en ${countdown} segundos...`)
       return () => clearTimeout(timer);
     } else if (purchaseID != null && countdown === 0) {
       navigate("/")
@@ -70,7 +69,7 @@ const PaymentForm = () => {
       setMostarMsg(true)
       return
     }
-
+    setIsLoading(true)
     const buyer = {
       firstName: values.name, lastName:values.lastName,mail:values.mail
     }
@@ -91,22 +90,42 @@ const PaymentForm = () => {
         await updateDoc(dbDoc, { stock: increment(-product.quantity) });
       })
         setPurchaseID(res.id); 
-        setMsg(`Gracias por tu compra:
-        El número de orden es: ${res.id} te esperamos en la tienda 😉!
-        Serás redirigido a la página principal en ${countdown} segundos...`)
+        setMsg(`Gracias por su Compra! El número de orden es: "${res.id.toUpperCase()}". Serás redirigido a la página principal en ${countdown} segundos...`)
         setTypeMessage('success')
         setDurationMsg(null)
         setMostarMsg(true) 
-        setValues(initialState)  
+        setValues(initialState) 
         clearCart()
+        //setIsLoading(false)  
+        
     })
     .catch((error) => {
-      console.log(error)            
+      console.log(error)
+      setIsLoading(false)            
     })
   };
 
   return (<>
+
+{/*<CustomMessage     
+    openSb={mostarMsg}
+    typeMessage={typeMessage}
+    messageSnackBar={msg}
+    duration = {durationMsg}
+    onCloseSnackbar={handlerCloseSnackBar}/>*/ 
+    }
+    <Collapse style={{marginTop:"40px"}} in={mostarMsg}>
+      <Alert  severity={typeMessage} sx={{ width: '100%' }}>
+        {msg}
+      </Alert>
+    </Collapse>
     <Paper style={{marginTop:"40px"}} elevation={3} >
+    {isLoading ? (
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress />
+        </Box>
+      ) :
+
     <form className="FormContainer" onSubmit={onSubmit}>
     <Grid container spacing={2} style={{marginTop:"10px", flexDirection:"column"}}>
       <Grid item>
@@ -168,13 +187,8 @@ const PaymentForm = () => {
         </Grid>      
       </Grid>
       </form>
+    }
     </Paper>
-    <CustomMessage     
-    openSb={mostarMsg}
-    typeMessage={typeMessage}
-    messageSnackBar={msg}
-    duration = {durationMsg}
-    onCloseSnackbar={handlerCloseSnackBar}/>
      </>
   );
 };
